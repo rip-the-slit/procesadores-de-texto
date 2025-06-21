@@ -99,11 +99,14 @@ const FloatingStars = () => {
     
     // Calculate a dynamic "kick" strength based on scroll speed
     const kickStrength = Math.min(Math.abs(scrollDelta) * 0.1, 15);
-    const direction = scrollDelta > 0 ? -1 : 1; 
+    // The direction is based on the scroll. Positive delta (scroll down) means positive vy kick (stars move down).
+    const direction = scrollDelta > 0 ? 1 : -1; 
 
     setStars(prevStars => prevStars.map(star => ({
         ...star,
+        // Give a little horizontal kick for variety
         vx: star.vx + (Math.random() - 0.5) * kickStrength * 0.5,
+        // The main kick is vertical, in the direction of the scroll
         vy: star.vy + direction * kickStrength * (0.8 + Math.random() * 0.4),
     })));
   }, []);
