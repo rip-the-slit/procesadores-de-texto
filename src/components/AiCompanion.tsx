@@ -93,7 +93,7 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
         <CardTitle className="font-headline">Tu Ayudante IA</CardTitle>
         <CardDescription>¿Tienes alguna duda?</CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-col h-[50vh]">
+      <CardContent className="flex flex-col h-[65vh]">
         <ScrollArea className="flex-1 mb-4 border rounded-md p-4" ref={scrollAreaRef}>
           <div className="flex flex-col gap-4">
             {messages.map((msg, i) => (

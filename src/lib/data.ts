@@ -41,8 +41,8 @@ export const topics: Topic[] = [
       {
         title: 'Dando Órdenes al Programa',
         content: 'El programa es como un robot muy obediente. Nosotros le damos una orden, ¡y él la cumple al instante! Estas órdenes, que llamamos "comandos", nos permiten cambiar la apariencia de nuestras palabras. Pero recuerda la regla de oro #1: antes de dar cualquier orden, ¡primero debes SELECCIONAR el texto! Seleccionar es como apuntar con el dedo y decirle al robot: "¡Quiero que le hagas algo a *estas* palabras!".',
-        image: '/assets/seleccion.gif',
-        imageHint: 'Animación GIF mostrando cómo se selecciona un texto con el cursor del mouse en un documento.'
+        image: '/assets/orden.gif',
+        imageHint: 'Orden siendo dada a un robot.'
       },
       {
         title: 'Los Comandos Básicos',
@@ -73,22 +73,40 @@ export const topics: Topic[] = [
     Icon: Paintbrush,
     sections: [
       {
-        title: 'Paso 1: La Regla de Oro - ¡Seleccionar!',
+        title: 'La Regla de Oro - ¡Seleccionar!',
         content: 'Antes que nada, recuerda: para cambiar cualquier parte de tu texto, primero debes seleccionarla. Simplemente deja el clic presionado y arrastra el mouse sobre las palabras que quieres transformar. ¡La computadora necesita saber a qué texto quieres aplicarle un comando!',
-        image: 'https://i.imgur.com/dJmVf1A.gif',
-        imageHint: 'Animación GIF mostrando cómo se selecciona un texto con el cursor del mouse en un documento.',
+        image: '/assets/seleccion.gif',
+        imageHint: 'Animación GIF mostrando cómo se selecciona un texto con el cursor del mouse en un documento.'
       },
       {
-        title: 'Paso 2: Aplicando Comandos (Los Botones Mágicos)',
-        content: 'Con tu texto ya seleccionado, busca estos botones. ¡Son universales y se ven muy parecidos en LibreOffice y Google Docs!\n\n* Tamaño: Busca el número (usualmente empieza en 12) y elige uno más grande.\n* Color: Busca el ícono de la letra "A" con una barra de color debajo.\n* Estilo: Los tres botones más famosos: la N para Negrita, la K o C para Cursiva, y la S para Subrayado.\n* Alineación: Busca los botones con las rayitas para mover tu texto a la izquierda, al CENTRO o a la derecha.',
-        image: 'https://i.imgur.com/cQ3b3sD.png',
-        imageHint: 'Comparación lado a lado de las barras de herramientas de LibreOffice y Google Docs, destacando los botones de formato.'
+        title: 'Cambiale el tamaño',
+        content: 'Con tu texto ya seleccionado, busca los botones. ¡Son universales y se ven muy parecidos en LibreOffice y Google Docs! Para el tamaño, busca el número (usualmente empieza en 12) y elige uno más grande.',
+        image: '/assets/tamano.png',
+        imageHint: 'Comparación lado a lado de las barras de herramientas de LibreOffice y Google Docs, destacando el boton de tamaño.'
       },
       {
-        title: 'Poder Extra: El Corrector Ortográfico',
+        title: 'Colorealo',
+        content: '¡Hora de pintar! Con el texto seleccionado, busca el botón con una letra "A" y una barra de color debajo. Al hacer clic, se abrirá una paleta mágica. ¡Elige el color que más te guste!',
+        image: '/assets/color.png',
+        imageHint: 'Comparación lado a lado de las barras de herramientas de LibreOffice y Google Docs, destacando el boton de color.'
+      },
+      {
+        title: 'Dale estilo',
+        content: '¿Quieres que tu texto se vea fuerte, inclinado o con una línea debajo? ¡Busca los botones especiales N, K y S! La "N" es para Negrita, la "K" para Cursiva y la "S" para Subrayado. Si usas Google Docs, la "B" es para Negrita, la "I" para Cursiva y la "U" para Subrayado.¡Puedes combinarlos para un look único!',
+        image: '/assets/estilo.png',
+        imageHint: 'Comparación lado a lado de las barras de herramientas de LibreOffice y Google Docs, destacando los botones de negrita, cursiva y subrayado.'
+      },
+      {
+        title: 'Alinealo',
+        content: '¿Dónde quieres que empiece tu texto? ¿A la izquierda, en el centro o a la derecha? ¡Los botones de alineación son tus amigos! Son unas barritas apiladas que te muestran cómo quedará el texto. ¡Elige la que mejor se vea para tu título o tu historia!',
+        image: '/assets/alineacion.png',
+        imageHint: 'Comparación lado a lado de las barras de herramientas de LibreOffice y Google Docs, destacando los botones de alineación izquierda, centrada y derecha.'
+      },
+      {
+        title: 'Truco Extra: El Corrector Ortográfico',
         content: '¿Ves una línea roja ondulada debajo de una palabra? ¡Es una alerta secreta! La computadora te está avisando de un posible error. Haz clic derecho sobre la palabra y el programa te dará la sugerencia correcta. ¡Es como tener un diccionario mágico!',
-        image: 'https://i.imgur.com/9v4o3rF.gif',
-        imageHint: 'Animación GIF mostrando cómo el corrector ortográfico subraya una palabra mal escrita y ofrece la corrección al hacer clic derecho.'
+        image: '/assets/corrector.png',
+        imageHint: 'Imagen mostrando cómo el corrector ortográfico subraya una palabra mal escrita y ofrece la corrección al hacer clic derecho.'
       }
     ],
     quiz: [
@@ -119,15 +137,9 @@ export const topics: Topic[] = [
       {
         title: 'Manual para Insertar Formas',
         content: 'Tanto en LibreOffice como en Google Docs, el proceso es muy similar. Ve al menú de arriba y busca la opción "Insertar". Dentro de ese menú, busca la opción "Forma". ¡Ahí encontrarás un montón de figuras para decorar tu trabajo!',
-        image: 'https://i.imgur.com/7i2r1gN.gif',
+        image: '/assets/insertar.gif',
         imageHint: 'Animación GIF que muestra el cursor yendo a "Insertar", luego a "Forma" y seleccionando una estrella para ponerla en el documento.',
-      },
-      {
-        title: 'Manual para Insertar Imágenes',
-        content: 'De la misma forma que con las formas, para añadir una foto desde tu computadora debes ir al menú "Insertar" y esta vez buscar la opción "Imagen". Se abrirá una ventana para que busques en tus carpetas la foto que quieres usar. ¡Recuerda que una imagen puede hacer tu historia mucho más divertida!',
-        image: 'https://i.imgur.com/yO8v5Yg.gif',
-        imageHint: 'Animación GIF que muestra el cursor yendo a "Insertar", luego a "Imagen", y seleccionando una foto de una carpeta.'
-      },
+      }
     ],
     quiz: [
       {
@@ -137,10 +149,10 @@ export const topics: Topic[] = [
         explanation: '¡Muy bien! El menú "Insertar" es el centro de comando para agregar casi cualquier cosa a tu documento, como formas, imágenes, y más.',
       },
       {
-        question: '¿Qué puedes usar para decorar un "Perfil de Súper-Creador"?',
+        question: '¿Qué puedes usar para decorar tus textos?',
         options: ['Solo texto negro', 'Al menos una forma como una estrella o un rayo', 'Solo letras mayúsculas', 'No se puede decorar'],
         correctAnswer: 'Al menos una forma como una estrella o un rayo',
-        explanation: '¡Correcto! En tu misión se pide que insertes al menos una forma para decorar tu perfil y hacerlo único.',
+        explanation: '¡Correcto! En tu misión se pide que insertes al menos una forma para decorar tus textos y hacerlos unicos.',
       },
     ],
   },
@@ -152,24 +164,24 @@ export const topics: Topic[] = [
     sections: [
       {
         title: 'Herramienta 1: LibreOffice Writer (El Programa Instalado)',
-        content: 'LibreOffice es una herramienta que se instala directamente en la computadora. Esto significa que, una vez instalado, tendrás un ícono en tu computadora para empezar a crear cuando quieras, ¡sin necesidad de internet! Para la instalación, es mejor que pidas ayuda a tus papás.',
-        image: 'https://i.imgur.com/sVFyYjG.png',
-        imageHint: 'Imagen del ícono de la aplicación de LibreOffice Writer.'
+        content: 'Google Docs en tu teléfono es una aplicación que puedes descargar. Una vez instalada, tendrás un ícono en la pantalla de tu teléfono para empezar a crear cuando quieras, ¡ideal para cuando estás fuera de casa! Para la instalación, puedes pedir ayuda a tus papás o un adulto.',
+        video: 'https://www.youtube.com/embed/Cy_c422B9ts?si=KnLvQPlPFY2OebCu',
       },
       {
         title: 'Manual de Acceso a LibreOffice Writer',
-        content: 'Una vez que tus papás lo hayan instalado, solo debes buscar el ícono del programa en tu computadora y hacer doble clic. Para empezar a escribir, ve al menú de arriba, a "Archivo", luego a "Nuevo" y elige "Documento de texto". ¡Y listo! Tendrás tu lienzo en blanco para empezar a crear.',
-      },
-      {
-        title: 'Herramienta 2: Google Docs (La Herramienta en la Nube)',
-        content: '¡Esta opción es diferente! Google Docs no se instala en tu computadora, ¡vive en internet! Esto es genial porque no ocupa espacio y guarda todo lo que haces automáticamente. ¡Nunca más te preocuparás por perder tu trabajo si se va la luz!',
-        image: 'https://i.imgur.com/mO3hS1W.png',
+        content: 'Una vez que tus papás lo hayan instalado, solo debes buscar el ícono del programa en tu computadora y hacer doble clic (Es el icono documento azul). Para empezar a escribir, ve al menú de arriba, a "Archivo", luego a "Nuevo" y elige "Documento de texto". ¡Y listo! Tendrás tu lienzo en blanco para empezar a crear.',
+        image: '/assets/documento_nuevo.gif',
         imageHint: 'Imagen del logo de Google Docs.'
       },
       {
+        title: 'Herramienta 2: Google Docs (La Herramienta en la Nube)',
+        content: 'Aunque Google Docs vive en internet (la nube), ¡también puedes tenerlo como una aplicación en tu teléfono! Así tienes acceso a tus documentos desde cualquier lugar. Funciona de forma muy parecida a la versión de computadora, ¡pero adaptada a la pantalla de tu teléfono! Siempre guarda tus cambios automáticamente. Se puede instalar desde la Play Store',
+        image: '/assets/instalar_docs.png',
+      },
+      {
         title: 'Manual de Acceso a Google Docs',
-        content: 'Para usar Google Docs, necesitas la ayuda de tus papás para usar su cuenta de Google. Solo deben ir a la página docs.google.com. Una vez allí, para crear un documento nuevo, solo tienen que hacer clic en el botón de colores con el signo "+" que dice "En blanco". ¡Misma misión, diferente botón de inicio!',
-        image: 'https://i.imgur.com/L1n8gJ8.gif',
+        content: 'Para crear un documento nuevo, solo tienen que hacer clic en el botón de colores con el signo "+" que dice "En blanco". ¡Misma misión, diferente botón de inicio!',
+        image: '/assets/documento_nuevo_docs.png',
         imageHint: 'Animación GIF mostrando cómo se abre un navegador, se va a docs.google.com y se hace clic en el botón "+" para crear un nuevo documento.'
       }
     ],
