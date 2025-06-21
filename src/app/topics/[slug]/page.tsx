@@ -23,11 +23,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function TopicPage({ params }: { params: { slug:string } }) {
-  const topic = getTopic(params.slug);
+  const topicData = getTopic(params.slug);
 
-  if (!topic) {
+  if (!topicData) {
     notFound();
   }
 
-  return <TopicClientPage topic={topic} />;
+  const { Icon, ...topicForClient } = topicData;
+
+  return <TopicClientPage topic={topicForClient} />;
 }

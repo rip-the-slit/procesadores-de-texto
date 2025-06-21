@@ -10,7 +10,7 @@ import { CheckCircle2, XCircle, ArrowRight, ArrowLeft } from 'lucide-react';
 import { Progress } from './ui/progress';
 
 interface QuizProps {
-  topic: Topic;
+  topic: Pick<Topic, 'quiz' | 'title'>;
   onComplete: (score: number) => void;
 }
 

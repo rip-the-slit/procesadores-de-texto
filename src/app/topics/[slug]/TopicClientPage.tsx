@@ -17,7 +17,7 @@ import { useGame } from '@/contexts/GameContext';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 
-export default function TopicClientPage({ topic }: { topic: Topic }) {
+export default function TopicClientPage({ topic }: { topic: Omit<Topic, 'Icon'> }) {
   const [view, setView] = useState<'topic' | 'quiz' | 'results'>('topic');
   const [score, setScore] = useState(0);
   const { addPoints, addBadge } = useGame();
