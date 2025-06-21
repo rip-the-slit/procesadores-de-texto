@@ -1,21 +1,21 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 interface Star {
   id: number;
   top: string;
   left: string;
-  animationDuration: string;
-  animationDelay: string;
   size: number;
+  speed: number;
 }
 
 const FloatingStars = () => {
   const [stars, setStars] = useState<Star[]>([]);
+  const starRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    // Math.random is safe in useEffect
+    // Generate stars on component mount
     const generateStars = () => {
       const newStars: Star[] = [];
       const numStars = 100;
@@ -24,29 +24,48 @@ const FloatingStars = () => {
           id: i,
           top: `${Math.random() * 100}%`,
           left: `${Math.random() * 100}%`,
-          animationDuration: `${Math.random() * 30 + 15}s`,
-          animationDelay: `${Math.random() * 15}s`,
           size: Math.random() * 2 + 1,
+          speed: Math.random() * 0.3 + 0.1, // Different speeds for parallax
         });
       }
       setStars(newStars);
+      starRefs.current = new Array(newStars.length).fill(null);
     };
     generateStars();
   }, []);
 
+  useEffect(() => {
+    // Handle scroll event for parallax effect
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      starRefs.current.forEach((starEl, index) => {
+        if (starEl) {
+          const starData = stars[index];
+          if (starData) {
+            starEl.style.transform = `translateY(${scrollY * starData.speed}px)`;
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [stars]);
+
   return (
     <div className="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden" aria-hidden="true">
-      {stars.map((star) => (
+      {stars.map((star, index) => (
         <div
           key={star.id}
-          className="absolute rounded-full bg-yellow-300 star-animation"
+          ref={(el) => (starRefs.current[index] = el)}
+          className="absolute rounded-full bg-yellow-300 transition-transform duration-100 ease-out"
           style={{
             top: star.top,
             left: star.left,
             width: `${star.size}px`,
             height: `${star.size}px`,
-            animationDuration: star.animationDuration,
-            animationDelay: star.animationDelay,
             boxShadow: '0 0 6px 2px rgba(253, 244, 155, 0.5)',
           }}
         />

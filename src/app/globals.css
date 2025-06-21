@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --background: 210 40% 98% / 0; /* Fully transparent so body bg shows */
-    --foreground: 210 40% 98%;
+    --foreground: 222.2 47.4% 11.2%;
     --card: 210 40% 9% / 0.6; /* Glassy card */
     --card-foreground: 210 40% 98%;
     --popover: 210 40% 5%; /* Solid popover */
@@ -56,17 +56,4 @@
   body {
     @apply bg-[#0f172a] text-foreground; /* Dark slate background */
   }
-}
-
-@keyframes float {
-  0% { transform: translateY(0px) translateX(0px); }
-  50% { transform: translateY(-25px) translateX(15px); }
-  100% { transform: translateY(0px) translateX(0px); }
-}
-
-.star-animation {
-  animation-name: float;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  opacity: 0.8;
 }
