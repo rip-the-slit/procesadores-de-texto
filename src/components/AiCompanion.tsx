@@ -94,7 +94,7 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
         <CardDescription>¿Tienes alguna duda?</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col h-[65vh]">
-        <ScrollArea className="flex-1 mb-4 border rounded-md p-4" ref={scrollAreaRef}>
+        <ScrollArea className="flex-1 mb-4 border rounded-md p-4 bg-background/50" ref={scrollAreaRef}>
           <div className="flex flex-col gap-4">
             {messages.map((msg, i) => (
               <div
@@ -110,7 +110,7 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
                 <div
                   className={cn(
                     'max-w-xs rounded-lg px-4 py-2 text-sm whitespace-pre-wrap',
-                    'bg-muted'
+                    msg.role === 'user' ? 'bg-primary/80 text-primary-foreground' : 'bg-muted/80'
                   )}
                 >
                   {msg.content}
@@ -123,7 +123,7 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
                      <AvatarImage src="https://placehold.co/100x100.png" data-ai-hint="friendly robot" />
                      <AvatarFallback><Bot /></AvatarFallback>
                   </Avatar>
-                  <div className="bg-muted px-4 py-2 rounded-lg flex items-center">
+                  <div className="bg-muted/80 px-4 py-2 rounded-lg flex items-center">
                     <Loader2 className="h-4 w-4 animate-spin" />
                   </div>
                </div>

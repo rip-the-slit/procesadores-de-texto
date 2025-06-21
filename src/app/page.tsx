@@ -4,7 +4,7 @@ import { topics } from '@/lib/data';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-1 container mx-auto p-4 md:p-8">
         <div className="text-center mb-12">

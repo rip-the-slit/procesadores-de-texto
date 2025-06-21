@@ -47,10 +47,10 @@ export default function Quiz({ topic, onComplete }: QuizProps) {
   };
 
   const getOptionClass = (option: string) => {
-    if (answerStatus === 'unanswered') return '';
-    if (option === currentQuestion.correctAnswer) return 'bg-green-100 dark:bg-green-900 border-green-500';
-    if (option === selectedAnswer) return 'bg-red-100 dark:bg-red-900 border-red-500';
-    return '';
+    if (answerStatus === 'unanswered') return 'bg-background/30';
+    if (option === currentQuestion.correctAnswer) return 'bg-green-100/50 border-green-500';
+    if (option === selectedAnswer) return 'bg-red-100/50 border-red-500';
+    return 'bg-background/30';
   };
 
   return (
@@ -86,7 +86,7 @@ export default function Quiz({ topic, onComplete }: QuizProps) {
           </RadioGroup>
 
           {answerStatus !== 'unanswered' && (
-            <Card className="mt-6 bg-muted">
+            <Card className="mt-6 bg-muted/80">
               <CardContent className="p-4 flex items-start gap-4">
                 {answerStatus === 'correct' ? (
                   <CheckCircle2 className="h-8 w-8 text-green-500 mt-1 flex-shrink-0" />
