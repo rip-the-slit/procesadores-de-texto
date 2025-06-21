@@ -22,10 +22,10 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const lastMessageRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToLastMessage = () => {
+    lastMessageRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   useEffect(() => {
@@ -35,7 +35,12 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
   }, [topicName]);
 
   useEffect(() => {
-    scrollToBottom();
+    if (messages.length > 0 && messages[messages.length - 1].role === 'assistant') {
+      // Use a timeout to ensure the DOM has rendered the new message before scrolling
+      setTimeout(() => {
+        scrollToLastMessage();
+      }, 100);
+    }
   }, [messages]);
   
   const handleAiCall = async (call: () => Promise<any>, userMessage: string, processResult: (result: any) => string) => {
@@ -96,6 +101,7 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
           <div className="flex flex-col gap-4">
             {messages.map((msg, i) => (
               <div
+                ref={i === messages.length - 1 ? lastMessageRef : null}
                 key={i}
                 className={cn('flex items-start gap-3', msg.role === 'user' ? 'justify-end' : 'justify-start')}
               >
@@ -126,7 +132,6 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
                   </div>
                </div>
             )}
-            <div ref={messagesEndRef} />
           </div>
         </ScrollArea>
         <div className="flex flex-col gap-2 mb-4">
