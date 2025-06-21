@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { provideSimpleExplanation } from '@/ai/flows/provide-simple-explanations';
 import { generateQuestionPrompts } from '@/ai/flows/generate-question-prompts';
+import { answerFromContent } from '@/ai/flows/answer-from-content';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -80,9 +81,9 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
     setInput('');
     
     await handleAiCall(
-      () => provideSimpleExplanation({ topic: question }),
+      () => answerFromContent({ question, topicContent }),
       question,
-      (result) => result.explanation
+      (result) => result.answer
     );
   };
 

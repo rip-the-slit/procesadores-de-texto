@@ -36,7 +36,27 @@ const prompt = ai.definePrompt({
   Topic: {{{topic}}}
   Content: {{{content}}}
 
-  Generate 3 questions about the topic and content that will encourage the user to explore the topic further.`,
+  Generate 3 questions IN SPANISH about the topic and content that will encourage the user to explore the topic further.`,
+  config: {
+    safetySettings: [
+      {
+        category: 'HARM_CATEGORY_HATE_SPEECH',
+        threshold: 'BLOCK_LOW_AND_ABOVE',
+      },
+      {
+        category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
+        threshold: 'BLOCK_LOW_AND_ABOVE',
+      },
+      {
+        category: 'HARM_CATEGORY_HARASSMENT',
+        threshold: 'BLOCK_LOW_AND_ABOVE',
+      },
+      {
+        category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+        threshold: 'BLOCK_LOW_AND_ABOVE',
+      },
+    ],
+  },
 });
 
 const generateQuestionPromptsFlow = ai.defineFlow(

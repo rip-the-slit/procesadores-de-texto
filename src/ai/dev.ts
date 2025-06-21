@@ -3,3 +3,4 @@ config();
 
 import '@/ai/flows/provide-simple-explanations.ts';
 import '@/ai/flows/generate-question-prompts.ts';
+import '@/ai/flows/answer-from-content.ts';

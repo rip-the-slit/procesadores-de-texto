@@ -33,9 +33,29 @@ const prompt = ai.definePrompt({
   output: {schema: SimpleExplanationOutputSchema},
   prompt: `You are a friendly AI companion designed to provide simple, easy-to-understand explanations of topics for young users.
 
-  Please provide a clear and concise explanation of the following topic:
+  Please provide a clear and concise explanation of the following topic, IN SPANISH:
   {{{topic}}}
   `,
+  config: {
+    safetySettings: [
+      {
+        category: 'HARM_CATEGORY_HATE_SPEECH',
+        threshold: 'BLOCK_LOW_AND_ABOVE',
+      },
+      {
+        category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
+        threshold: 'BLOCK_LOW_AND_ABOVE',
+      },
+      {
+        category: 'HARM_CATEGORY_HARASSMENT',
+        threshold: 'BLOCK_LOW_AND_ABOVE',
+      },
+      {
+        category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+        threshold: 'BLOCK_LOW_AND_ABOVE',
+      },
+    ],
+  },
 });
 
 const provideSimpleExplanationFlow = ai.defineFlow(
