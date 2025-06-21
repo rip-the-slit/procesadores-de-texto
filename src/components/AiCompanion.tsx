@@ -110,7 +110,7 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
                 <div
                   className={cn(
                     'max-w-xs rounded-lg px-4 py-2 text-sm whitespace-pre-wrap',
-                    msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'
+                    'bg-muted'
                   )}
                 >
                   {msg.content}
@@ -133,7 +133,7 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
         <div className="flex flex-col gap-2 mb-4">
              <Button variant="outline" onClick={handleSimpleExplanation} disabled={isLoading}>Explícamelo de forma sencilla</Button>
              <Button variant="outline" onClick={handleGenerateQuestions} disabled={isLoading}>
-                <Sparkles className="mr-2 h-4 w-4"/>
+                <Sparkles className="mr-2 h-4 w-4 text-accent"/>
                 Preguntas para pensar
             </Button>
         </div>
