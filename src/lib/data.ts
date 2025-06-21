@@ -35,19 +35,19 @@ export const topics: Topic[] = [
       {
         title: 'Tu Hoja de Papel Mágica',
         content: 'Piensa en un procesador de texto como una hoja de papel en tu computadora donde puedes escribir, borrar y decorar tus textos cuando quieras y de la forma que quieras. ¡Es como tener una hoja que nunca se acaba y un lápiz mágico que borra sin dejar mancha!',
-        image: 'https://i.imgur.com/jS5p6sC.gif',
+        image: '/assets/procesador.gif',
         imageHint: 'Procesador de texto',
       },
       {
         title: 'Dando Órdenes al Programa',
         content: 'El programa es como un robot muy obediente. Nosotros le damos una orden, ¡y él la cumple al instante! Estas órdenes, que llamamos "comandos", nos permiten cambiar la apariencia de nuestras palabras. Pero recuerda la regla de oro #1: antes de dar cualquier orden, ¡primero debes SELECCIONAR el texto! Seleccionar es como apuntar con el dedo y decirle al robot: "¡Quiero que le hagas algo a *estas* palabras!".',
-        image: 'https://i.imgur.com/dJmVf1A.gif',
+        image: '/assets/seleccion.gif',
         imageHint: 'Animación GIF mostrando cómo se selecciona un texto con el cursor del mouse en un documento.'
       },
       {
         title: 'Los Comandos Básicos',
         content: 'Una vez que seleccionas, puedes darle órdenes como estas: Tamaño: Para hacer la letra más GRANDE o más pequeña. Color: ¡Es como tener una caja de colores infinita para pintar las palabras! Estilo: Para darle personalidad al texto, como la Negrita (letras gruesas), Cursiva (letras inclinadas) o Subrayado (línea debajo). Alineación: Decide si el texto va a la izquierda, en el centro o a la derecha.',
-        image: 'https://i.imgur.com/cQ3b3sD.png',
+        image: '/assets/ordenes.gif',
         imageHint: 'Una paleta de herramientas de un procesador de texto mostrando los íconos de tamaño, color, negrita, cursiva, subrayado y alineación.'
       },
     ],
