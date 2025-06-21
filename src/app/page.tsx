@@ -9,7 +9,7 @@ export default function Home() {
       <main className="flex-1 container mx-auto p-4 md:p-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary-foreground bg-primary/80 rounded-lg py-2 px-4 inline-block shadow-lg">
-            ¡Explora el Mundo de las Palabras!
+            Explora el mundo de los procesadores de texto
           </h1>
           <p className="text-lg md:text-xl mt-4 text-foreground/80 max-w-2xl mx-auto">
             Aprende a usar los procesadores de texto de una forma divertida y fácil. ¡Elige un tema para empezar tu aventura!
@@ -22,7 +22,7 @@ export default function Home() {
         </div>
       </main>
       <footer className="text-center p-4 text-muted-foreground text-sm">
-        Hecho con ❤️ para pequeños exploradores digitales.
+        Hecho para los genios de 4to grado
       </footer>
     </div>
   );

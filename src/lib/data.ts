@@ -164,7 +164,7 @@ export const topics: Topic[] = [
     sections: [
       {
         title: 'Herramienta 1: LibreOffice Writer (El Programa Instalado)',
-        content: 'Google Docs en tu teléfono es una aplicación que puedes descargar. Una vez instalada, tendrás un ícono en la pantalla de tu teléfono para empezar a crear cuando quieras, ¡ideal para cuando estás fuera de casa! Para la instalación, puedes pedir ayuda a tus papás o un adulto.',
+        content: 'LibreOffice es una herramienta que se instala directamente en la computadora. Esto significa que, una vez instalado, tendrás un ícono en tu computadora para empezar a crear cuando quieras, ¡sin necesidad de internet! Para la instalación, es mejor que pidas ayuda a tus papás.',
         video: 'https://www.youtube.com/embed/Cy_c422B9ts?si=KnLvQPlPFY2OebCu',
       },
       {
