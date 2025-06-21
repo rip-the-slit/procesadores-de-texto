@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Providers } from './providers';
 import './globals.css';
+import FloatingStars from '@/components/FloatingStars';
 
 export const metadata: Metadata = {
   title: 'Procesadores de Texto para Niños',
@@ -13,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" className="dark">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -23,6 +24,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased">
+        <FloatingStars />
         <Providers>{children}</Providers>
       </body>
     </html>
