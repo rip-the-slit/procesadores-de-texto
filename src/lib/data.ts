@@ -35,7 +35,7 @@ export const topics: Topic[] = [
       {
         title: 'Tu Hoja de Papel Mágica',
         content: 'Piensa en un procesador de texto como una hoja de papel en tu computadora donde puedes escribir, borrar y decorar tus textos cuando quieras y de la forma que quieras. ¡Es como tener una hoja que nunca se acaba y un lápiz mágico que borra sin dejar mancha!',
-        image: 'https://i.imgur.com/0rD5d9r.gif',
+        image: 'https://i.imgur.com/jS5p6sC.gif',
         imageHint: 'Procesador de texto',
       },
       {
@@ -119,13 +119,13 @@ export const topics: Topic[] = [
       {
         title: 'Manual para Insertar Formas',
         content: 'Tanto en LibreOffice como en Google Docs, el proceso es muy similar. Ve al menú de arriba y busca la opción "Insertar". Dentro de ese menú, busca la opción "Forma". ¡Ahí encontrarás un montón de figuras para decorar tu trabajo!',
-        image: 'https://i.imgur.com/7gY3c7a.gif',
+        image: 'https://i.imgur.com/7i2r1gN.gif',
         imageHint: 'Animación GIF que muestra el cursor yendo a "Insertar", luego a "Forma" y seleccionando una estrella para ponerla en el documento.',
       },
       {
         title: 'Manual para Insertar Imágenes',
         content: 'De la misma forma que con las formas, para añadir una foto desde tu computadora debes ir al menú "Insertar" y esta vez buscar la opción "Imagen". Se abrirá una ventana para que busques en tus carpetas la foto que quieres usar. ¡Recuerda que una imagen puede hacer tu historia mucho más divertida!',
-        image: 'https://i.imgur.com/eO3kF0c.gif',
+        image: 'https://i.imgur.com/yO8v5Yg.gif',
         imageHint: 'Animación GIF que muestra el cursor yendo a "Insertar", luego a "Imagen", y seleccionando una foto de una carpeta.'
       },
     ],
