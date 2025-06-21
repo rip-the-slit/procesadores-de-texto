@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --background: 210 89% 95%; /* #E3F2FD */
-    --foreground: 222.2 47.4% 11.2%; /* Almost black */
+    --foreground: 215 28% 17%; /* gray-800 */
     
     --card: 0 0% 100%; /* White */
     --card-foreground: 222.2 47.4% 11.2%;
@@ -41,7 +41,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground; /* Use theme variables */
+    @apply text-foreground;
   }
 }
 

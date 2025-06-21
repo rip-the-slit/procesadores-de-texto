@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
 import { Providers } from './providers';
 import './globals.css';
-import { PT_Sans } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
-const ptSans = PT_Sans({
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-pt-sans',
+  variable: '--font-inter',
 });
 
 export const metadata: Metadata = {
@@ -20,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={ptSans.variable}>
-      <body className="font-headline antialiased">
+    <html lang="es" className={inter.variable}>
+      <body className="font-body antialiased">
         <Providers>{children}</Providers>
       </body>
     </html>
