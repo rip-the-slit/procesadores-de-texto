@@ -103,6 +103,7 @@ export default function TopicClientPage({ topic }: { topic: Omit<Topic, 'Icon'> 
                         height={400}
                         className="object-cover w-full"
                         data-ai-hint={section.imageHint || ''}
+                        unoptimized
                       />
                     </div>
                   )}
