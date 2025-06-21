@@ -36,7 +36,7 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
   }, [topicName]);
 
   useEffect(() => {
-    if (messages.length > 0 && messages[messages.length - 1].role === 'assistant') {
+    if (messages.length > 1 && messages[messages.length - 1].role === 'assistant') {
       // Use a timeout to ensure the DOM has rendered the new message before scrolling
       setTimeout(() => {
         scrollToLastMessage();
@@ -88,10 +88,10 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
   };
 
   return (
-    <Card className="shadow-lg">
+    <Card className="shadow-lg bg-card/60 backdrop-blur-sm">
       <CardHeader className="text-center">
         <Avatar className="mx-auto h-16 w-16 mb-2">
-            <AvatarFallback><Bot className="h-8 w-8" /></AvatarFallback>
+            <AvatarFallback className="bg-primary/20"><Bot className="h-8 w-8 text-primary" /></AvatarFallback>
         </Avatar>
         <CardTitle className="font-headline">Tu Ayudante IA</CardTitle>
         <CardDescription>¿Tienes alguna duda?</CardDescription>
@@ -107,13 +107,13 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
               >
                 {msg.role === 'assistant' && (
                   <Avatar className="h-8 w-8">
-                     <AvatarFallback><Bot /></AvatarFallback>
+                     <AvatarFallback className="bg-primary/20"><Bot className="text-primary"/></AvatarFallback>
                   </Avatar>
                 )}
                 <div
                   className={cn(
-                    'max-w-xs rounded-lg px-4 py-2 text-sm whitespace-pre-wrap',
-                    msg.role === 'user' ? 'bg-primary/80 text-primary-foreground' : 'bg-muted/80'
+                    'max-w-xs rounded-lg px-4 py-2 text-sm whitespace-pre-wrap shadow-md',
+                    msg.role === 'user' ? 'bg-primary/80 text-primary-foreground' : 'bg-muted/80 backdrop-blur-sm'
                   )}
                 >
                   {msg.content}
@@ -123,7 +123,7 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
             {isLoading && (
                <div className="flex items-start gap-3 justify-start">
                    <Avatar className="h-8 w-8">
-                     <AvatarFallback><Bot /></AvatarFallback>
+                     <AvatarFallback className="bg-primary/20"><Bot className="text-primary"/></AvatarFallback>
                   </Avatar>
                   <div className="bg-muted/80 px-4 py-2 rounded-lg flex items-center">
                     <Loader2 className="h-4 w-4 animate-spin" />
