@@ -1,92 +1,75 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
+import { useGame } from '@/contexts/GameContext';
+import { Star } from 'lucide-react';
 
-interface Star {
+interface StarProps {
   id: number;
   top: string;
   left: string;
   size: number;
-  speed: number;
+  delay: number;
 }
 
 const FloatingStars = () => {
-  const [stars, setStars] = useState<Star[]>([]);
-  const starRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const scrollY = useRef(0);
-  const animationFrameId = useRef<number | null>(null);
+  const { points } = useGame();
+  const [stars, setStars] = useState<StarProps[]>([]);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const numStars = points + 10;
 
   useEffect(() => {
-    const generateStars = () => {
-      const newStars: Star[] = [];
-      const numStars = 75; // Reduced for better performance
-      for (let i = 0; i < numStars; i++) {
-        newStars.push({
-          id: i,
-          top: `${Math.random() * 100}%`,
-          left: `${Math.random() * 100}%`,
-          size: Math.random() * 2 + 1,
-          speed: Math.random() * 0.5 + 0.1, // Increased speed variance for more depth
-        });
-      }
-      setStars(newStars);
-      starRefs.current = new Array(newStars.length).fill(null);
-    };
-    generateStars();
-  }, []);
+    const newStars: StarProps[] = Array.from({ length: numStars }, (_, i) => ({
+      id: i,
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      size: Math.random() * 10 + 10, // 10px to 20px
+      delay: Math.random() * 0.5,
+    }));
+    setStars(newStars);
+  }, [points]); // Rerun when points change
 
   useEffect(() => {
-    // This function updates star positions. It's called inside requestAnimationFrame
-    // to ensure it runs smoothly and doesn't block the main thread.
-    const updateStars = () => {
-      const currentScrollY = scrollY.current;
-      starRefs.current.forEach((starEl, index) => {
-        if (starEl) {
-          const starData = stars[index];
-          if (starData) {
-            starEl.style.transform = `translateY(${currentScrollY * starData.speed}px)`;
-          }
-        }
-      });
-      animationFrameId.current = null; // Allow the next frame to be requested
-    };
-
-    // This function runs on every scroll event
-    const onScroll = () => {
-      scrollY.current = window.scrollY;
-      // We schedule an animation frame only if there isn't one already pending.
-      // This prevents doing expensive work on every single scroll tick.
-      if (animationFrameId.current === null) {
-        animationFrameId.current = requestAnimationFrame(updateStars);
+    const handleScroll = () => {
+      setIsScrolling(true);
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
       }
+      scrollTimeout.current = setTimeout(() => {
+        setIsScrolling(false);
+      }, 300); // Reset after animation could finish
     };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      if (animationFrameId.current) {
-        cancelAnimationFrame(animationFrameId.current);
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
       }
     };
-  }, [stars]); // Rerun if stars are regenerated
+  }, []);
 
   return (
     <div className="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden" aria-hidden="true">
-      {stars.map((star, index) => (
+      {stars.map((star) => (
         <div
           key={star.id}
-          ref={(el) => (starRefs.current[index] = el)}
-          className="absolute rounded-full bg-yellow-300 transition-transform duration-500 ease-in-out"
+          className="absolute text-yellow-400"
           style={{
             top: star.top,
             left: star.left,
-            width: `${star.size}px`,
-            height: `${star.size}px`,
-            boxShadow: '0 0 6px 2px rgba(253, 244, 155, 0.5)',
-            willChange: 'transform', // Browser performance hint
+            animationDelay: isScrolling ? `${star.delay}s` : '0s',
           }}
-        />
+        >
+          <Star
+            className={isScrolling ? 'boing-animation' : ''}
+            size={star.size}
+            strokeWidth={1}
+            fill="currentColor"
+          />
+        </div>
       ))}
     </div>
   );
