@@ -9,7 +9,7 @@ import { generateQuestionPrompts } from '@/ai/flows/generate-question-prompts';
 import { answerFromContent } from '@/ai/flows/answer-from-content';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 
@@ -91,8 +91,7 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
     <Card className="shadow-lg">
       <CardHeader className="text-center">
         <Avatar className="mx-auto h-16 w-16 mb-2">
-            <AvatarImage src="https://placehold.co/100x100.png" data-ai-hint="friendly robot" />
-            <AvatarFallback><Bot /></AvatarFallback>
+            <AvatarFallback><Bot className="h-8 w-8" /></AvatarFallback>
         </Avatar>
         <CardTitle className="font-headline">Tu Ayudante IA</CardTitle>
         <CardDescription>¿Tienes alguna duda?</CardDescription>
@@ -108,7 +107,6 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
               >
                 {msg.role === 'assistant' && (
                   <Avatar className="h-8 w-8">
-                     <AvatarImage src="https://placehold.co/100x100.png" data-ai-hint="friendly robot" />
                      <AvatarFallback><Bot /></AvatarFallback>
                   </Avatar>
                 )}
@@ -125,7 +123,6 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
             {isLoading && (
                <div className="flex items-start gap-3 justify-start">
                    <Avatar className="h-8 w-8">
-                     <AvatarImage src="https://placehold.co/100x100.png" data-ai-hint="friendly robot" />
                      <AvatarFallback><Bot /></AvatarFallback>
                   </Avatar>
                   <div className="bg-muted/80 px-4 py-2 rounded-lg flex items-center">
@@ -137,8 +134,8 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
         </ScrollArea>
         <div className="flex flex-col gap-2 mb-4">
              <Button variant="outline" onClick={handleSimpleExplanation} disabled={isLoading}>Explícamelo de forma sencilla</Button>
-             <Button variant="outline" onClick={handleGenerateQuestions} disabled={isLoading} className="[&_svg]:text-accent">
-                <Sparkles className="mr-2 h-4 w-4"/>
+             <Button variant="outline" onClick={handleGenerateQuestions} disabled={isLoading}>
+                <Sparkles className="mr-2 h-4 w-4 text-accent"/>
                 Preguntas para pensar
             </Button>
         </div>
