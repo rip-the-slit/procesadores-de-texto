@@ -29,7 +29,7 @@
   .dark {
     --background: 210 40% 98% / 0; /* Fully transparent so body bg shows */
     --foreground: 210 40% 98%;
-    --card: 210 40% 9% / 0.6; /* Glassy card */
+    --card: 210 40% 12% / 0.6; /* Glassy card - Lighter for contrast */
     --card-foreground: 210 40% 98%;
     --popover: 210 40% 5%; /* Solid popover */
     --popover-foreground: 210 40% 98%;
@@ -37,14 +37,14 @@
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 15% / 0.5;
     --secondary-foreground: 210 40% 98%;
-    --muted: 210 40% 15% / 0.5;
-    --muted-foreground: 210 40% 60%;
+    --muted: 210 40% 25% / 0.5; /* Lighter for chat bubbles */
+    --muted-foreground: 210 40% 70%; /* Lighter muted text */
     --accent: 55 100% 61%;
     --accent-foreground: 55 100% 10%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 210 40% 15% / 0.2;
-    --input: 210 40% 15% / 0.4;
+    --border: 210 40% 25% / 0.3; /* More visible border */
+    --input: 210 40% 25% / 0.4; /* Lighter input */
     --ring: 207 90% 61%;
   }
 }
