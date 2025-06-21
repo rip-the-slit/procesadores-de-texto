@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Bot, CornerDownLeft, Loader2, Send, Sparkles } from 'lucide-react';
+import { Bot, Loader2, Send, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { provideSimpleExplanation } from '@/ai/flows/provide-simple-explanations';
@@ -21,8 +21,12 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     setMessages([
@@ -31,13 +35,7 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
   }, [topicName]);
 
   useEffect(() => {
-    // Auto-scroll to bottom
-    if (scrollAreaRef.current) {
-        const viewport = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
-        if(viewport) {
-            viewport.scrollTop = viewport.scrollHeight;
-        }
-    }
+    scrollToBottom();
   }, [messages]);
   
   const handleAiCall = async (call: () => Promise<any>, userMessage: string, processResult: (result: any) => string) => {
@@ -94,7 +92,7 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
         <CardDescription>¿Tienes alguna duda?</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col h-[65vh]">
-        <ScrollArea className="flex-1 mb-4 border rounded-md p-4 bg-background/50" ref={scrollAreaRef}>
+        <ScrollArea className="flex-1 mb-4 border rounded-md p-4 bg-background/50">
           <div className="flex flex-col gap-4">
             {messages.map((msg, i) => (
               <div
@@ -128,12 +126,13 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
                   </div>
                </div>
             )}
+            <div ref={messagesEndRef} />
           </div>
         </ScrollArea>
         <div className="flex flex-col gap-2 mb-4">
              <Button variant="outline" onClick={handleSimpleExplanation} disabled={isLoading}>Explícamelo de forma sencilla</Button>
-             <Button variant="outline" onClick={handleGenerateQuestions} disabled={isLoading}>
-                <Sparkles className="mr-2 h-4 w-4 text-accent"/>
+             <Button variant="outline" onClick={handleGenerateQuestions} disabled={isLoading} className="[&_svg]:text-accent">
+                <Sparkles className="mr-2 h-4 w-4"/>
                 Preguntas para pensar
             </Button>
         </div>
