@@ -135,7 +135,7 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
         <div className="flex flex-col gap-2 mb-4">
              <Button variant="outline" onClick={handleSimpleExplanation} disabled={isLoading}>Explícamelo de forma sencilla</Button>
              <Button variant="outline" onClick={handleGenerateQuestions} disabled={isLoading}>
-                <Sparkles className="mr-2 h-4 w-4 text-accent"/>
+                <Sparkles className="mr-2 h-4 w-4 text-yellow-400"/>
                 Preguntas para pensar
             </Button>
         </div>
