@@ -1,55 +1,125 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useGame } from '@/contexts/GameContext';
 import { Star } from 'lucide-react';
 
-interface StarProps {
+interface StarState {
   id: number;
-  top: string;
-  left: string;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
   size: number;
-  delay: number;
 }
 
 const FloatingStars = () => {
   const { points } = useGame();
-  const [stars, setStars] = useState<StarProps[]>([]);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+  const [stars, setStars] = useState<StarState[]>([]);
+  const animationFrameId = useRef<number>();
+  const lastScrollY = useRef(0);
 
-  const numStars = points + 10;
-
+  // Initialize or update stars when points change
   useEffect(() => {
-    const newStars: StarProps[] = Array.from({ length: numStars }, (_, i) => ({
-      id: i,
-      top: `${Math.random() * 100}%`,
-      left: `${Math.random() * 100}%`,
-      size: Math.random() * 10 + 10, // 10px to 20px
-      delay: Math.random() * 0.5,
+    const numStars = points + 10;
+    // Use a function with setStars to correctly handle state updates
+    setStars(prevStars => {
+        const currentCount = prevStars.length;
+        if (numStars > currentCount) {
+            const newStars = Array.from({ length: numStars - currentCount }, (_, i) => ({
+                id: Date.now() + i,
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                vx: 0,
+                vy: 0,
+                size: Math.random() * 10 + 10,
+            }));
+            return [...prevStars, ...newStars];
+        }
+        if (numStars < currentCount) {
+            return prevStars.slice(0, numStars);
+        }
+        return prevStars;
+    });
+    lastScrollY.current = window.scrollY;
+  }, [points]);
+  
+  // Animation loop using requestAnimationFrame
+  const animate = useCallback(() => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const friction = 0.96; // Slows down stars over time
+    const bounceDamping = 0.75; // Energy loss on bounce
+
+    setStars(prevStars => prevStars.map(star => {
+        let { x, y, vx, vy } = star;
+
+        // Apply friction to create deceleration
+        vx *= friction;
+        vy *= friction;
+
+        // Update position based on velocity
+        x += vx;
+        y += vy;
+
+        // Bounce off screen edges
+        if (x <= 0) {
+            x = 0;
+            vx *= -bounceDamping;
+        } else if (x >= width - star.size) {
+            x = width - star.size;
+            vx *= -bounceDamping;
+        }
+
+        if (y <= 0) {
+            y = 0;
+            vy *= -bounceDamping;
+        } else if (y >= height - star.size) {
+            y = height - star.size;
+            vy *= -bounceDamping;
+        }
+        
+        // Stop movement completely if velocity is very low
+        if (Math.abs(vx) < 0.1) vx = 0;
+        if (Math.abs(vy) < 0.1) vy = 0;
+
+        return { ...star, x, y, vx, vy };
     }));
-    setStars(newStars);
-  }, [points]); // Rerun when points change
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolling(true);
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current);
-      }
-      scrollTimeout.current = setTimeout(() => {
-        setIsScrolling(false);
-      }, 300); // Reset after animation could finish
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current);
-      }
-    };
+    animationFrameId.current = requestAnimationFrame(animate);
   }, []);
+
+  // Handle scroll to apply a "kick" to the stars
+  const handleScroll = useCallback(() => {
+    const scrollDelta = window.scrollY - lastScrollY.current;
+    lastScrollY.current = window.scrollY;
+
+    // Only apply kick if scroll is significant to avoid jitter
+    if (Math.abs(scrollDelta) < 2) return;
+    
+    // Calculate a dynamic "kick" strength based on scroll speed
+    const kickStrength = Math.min(Math.abs(scrollDelta) * 0.1, 15);
+    const direction = scrollDelta > 0 ? -1 : 1; 
+
+    setStars(prevStars => prevStars.map(star => ({
+        ...star,
+        vx: star.vx + (Math.random() - 0.5) * kickStrength * 0.5,
+        vy: star.vy + direction * kickStrength * (0.8 + Math.random() * 0.4),
+    })));
+  }, []);
+  
+  // Set up and tear down the animation loop and scroll listener
+  useEffect(() => {
+    animationFrameId.current = requestAnimationFrame(animate);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [animate, handleScroll]);
 
   return (
     <div className="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden" aria-hidden="true">
@@ -58,13 +128,11 @@ const FloatingStars = () => {
           key={star.id}
           className="absolute text-yellow-400"
           style={{
-            top: star.top,
-            left: star.left,
-            animationDelay: isScrolling ? `${star.delay}s` : '0s',
+            transform: `translate(${star.x}px, ${star.y}px)`,
+            willChange: 'transform',
           }}
         >
           <Star
-            className={isScrolling ? 'boing-animation' : ''}
             size={star.size}
             strokeWidth={1}
             fill="currentColor"
