@@ -9,8 +9,8 @@ export default function Header() {
   const { points } = useGame();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-card/60 backdrop-blur-sm">
-      <div className="container flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-50 w-full border-b bg-card/50 backdrop-blur-sm px-10">
+      <div className="container flex h-16 items-center justify-between m-auto">
         <Link href="/" className="flex items-center gap-3">
           <BookOpenCheck className="h-6 w-6 text-primary" />
           <span className="text-xl font-bold font-headline text-primary">

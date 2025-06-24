@@ -88,7 +88,7 @@ export default function AiCompanion({ topicName, topicContent }: { topicName: st
   };
 
   return (
-    <Card className="shadow-lg bg-card/60 backdrop-blur-sm">
+    <Card className="shadow-lg bg-card/50 backdrop-blur-sm">
       <CardHeader className="text-center">
         <Avatar className="mx-auto h-16 w-16 mb-2">
             <AvatarFallback className="bg-primary/20"><Bot className="h-8 w-8 text-primary" /></AvatarFallback>
